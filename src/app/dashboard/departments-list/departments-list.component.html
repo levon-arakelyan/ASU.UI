@@ -1,0 +1,37 @@
+<app-advanced-table
+  (reloadData)='reloadWithData($event)'
+  [filterText]='filter'
+  [order]='pagedDepartments.order'
+  [items]='pagedDepartments.data'
+  [totalRecords]='pagedDepartments.totalRecords'
+  [currentPage]='pagedDepartments.page'
+  listName="Ամբիոններ">
+
+  <app-advanced-table-column key="name" title="Անուն" [sort]="true" [filter]="true">
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="faculty" title="Ֆակուլտետ">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.faculty.name}}
+    </ng-template>
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="facultyHead" title="Ամբիոնի վարիչ">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.departmentHead?.head?.firstName}} {{item.departmentHead?.head?.lastName}}
+    </ng-template>
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="professions" title="Բաժիններ">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.professions.length}}
+    </ng-template>
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="teachers" title="Դասախոսներ">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.teachers.length}}
+    </ng-template>
+  </app-advanced-table-column>
+
+</app-advanced-table>

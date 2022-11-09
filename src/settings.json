@@ -1,0 +1,9 @@
+{
+  "serverUrl": "https://localhost:44352/api/",
+  "pagedList": {
+    "defaultPage": 1,
+    "defaultPageSize": 10,
+    "defaultOrderBy": "id",
+    "defaultOrderDirection": 1
+  }
+}

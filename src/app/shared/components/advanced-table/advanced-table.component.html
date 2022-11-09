@@ -1,0 +1,110 @@
+<div class="d-flex flex-wrap filters-area" [ngClass]="{'mobile-collapse': shouldFiltersBeCollapsed}">
+  <div
+    *ngIf="shouldFiltersBeCollapsed"
+    class="w-100 card-text-lighter weight-600 d-flex justify-content-between mt-3 d-md-none"
+    (click)="isFilterCollapsed = !isFilterCollapsed"
+    [ngClass]="{'mb-3 mb-md-0': shouldFiltersBeCollapsed}">
+    <span class="filters-text">Filters</span>
+    <i class="fa d-flex align-items-center size-12" [ngClass]="isFilterCollapsed ? 'fa-chevron-down' : 'fa-chevron-up'"></i>
+  </div>
+  <div *ngIf="shouldFiltersBeCollapsed" #collapse="ngbCollapse" [(ngbCollapse)]="isFilterCollapsed" class="w-100 d-md-block mb-md-1 mt-md-3">
+    <ng-container *ngTemplateOutlet="filters"></ng-container>
+  </div>
+  <div *ngIf="!shouldFiltersBeCollapsed" class="mt-3 w-100">
+    <ng-container *ngTemplateOutlet="filters"></ng-container>
+  </div>
+</div>
+
+<ng-template #filters>
+  <div *ngIf="!contentInFilterZone && !contentOutsideFromFilterZone">
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="contentInFilterZone">
+    <ng-template [ngIf]="" [ngTemplateOutlet]="contentInFilterZone"></ng-template>
+  </div>
+  <div
+    class="d-flex justify-content-between align-items-center"
+    [ngClass]="{'flex-wrap': !shouldFiltersBeCollapsed}">
+    <div>
+      <h3>{{listName}}</h3>
+    </div>
+    <div [ngClass]="{'w-100 w-md-auto mb-3 ': shouldFiltersBeCollapsed}" class="d-flex mb-md-0" >
+      <input
+        type="text"
+        *ngIf='hasSearchBar'
+        class="form-control filter-text"
+        [ngClass]="{'mobile-100': shouldFiltersBeCollapsed}"
+        [(ngModel)]="filterText"
+        (keydown.enter)="doSearch()"
+        [placeholder]="placeholder">
+      <button
+        *ngIf='hasSearchBar && hasClearButton'
+        class="btn btn-warning form-clear"
+        type="button"
+        (click)="clearFilters()"
+        title="Clear filters">
+        <i class="fa fa-times" aria-hidden="true"></i>
+        {{clearLabel}}
+      </button>
+      <!-- <button
+        *ngIf='hasSearchBar'
+        class="btn text-primary icon-container mr-0 mr-md-4"
+        [ngClass]="{'search-icon': shouldFiltersBeCollapsed}"
+        type="button"
+        (click)="doSearch()">
+        <i class="bi bi-search"></i>
+      </button> -->
+    </div>
+    <div *ngIf="contentOutsideFromFilterZone" [ngClass]="{'d-none d-md-block': shouldFiltersBeCollapsed}">
+      <ng-template [ngTemplateOutlet]="contentOutsideFromFilterZone"></ng-template>
+    </div>
+  </div>
+</ng-template>
+
+<div *ngIf="contentOutsideFromFilterZone && shouldFiltersBeCollapsed" class="d-md-none">
+  <ng-template [ngTemplateOutlet]="contentOutsideFromFilterZone"></ng-template>
+</div>
+
+<div class="grid-description card-text-light size-16" *ngIf="description != null">
+  {{description}}
+</div>
+
+<table class="table table-sm table-borderless mt-4">
+  <thead class="global-bg-th table-header">
+    <tr>
+      <th *ngFor="let column of columns" [ngClass]="column.class">
+        <a *ngIf="column.sort" role="button" (click)="setOrderBy(column.key)">
+          {{column.title}}
+          <div [ngClass]="'bi bi'+ getOrderClass(column.key)"></div>
+        </a>
+        <span *ngIf="!column.sort">{{column.title}}</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngIf="items != null && items.length" class="table-body">
+    <tr *ngFor="let item of items">
+      <ng-template ngFor let-column [ngForOf]="columns">
+        <td *ngIf="!column.incomingTemplate"
+          [innerHTML]="item[column.key]"></td>
+        <td *ngIf="column.incomingTemplate">
+          <ng-template [ngTemplateOutlet]="column.incomingTemplate"
+            [ngTemplateOutletContext]="{ item: item, innerHTML: item[column.key] }">
+          </ng-template>
+        </td>
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
+<app-pager
+  [hideIfOnePage]="true"
+  [records]="totalRecords"
+  [page]="currentPage"
+  [pageSize]="pageSize"
+  (onChanagePage)="setPage($event)">
+</app-pager>
+<div *ngIf="items != null && items.length == 0" class="jumbotron text-center text-secondary">
+  <h1>Արդյունք չի գտնվել</h1>
+</div>
+<div *ngIf="items == null" class="jumbotron text-center text-secondary">
+  <h1>Սպասեք...</h1>
+</div>

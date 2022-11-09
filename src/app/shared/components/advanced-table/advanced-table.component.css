@@ -1,0 +1,101 @@
+\::ng-deep  .search-highlight {
+  background-color: #F2E366;
+}
+
+.filter-text {
+  background-color: #E6EDF5;
+  max-width: 226px !important;
+  margin-right: 7px;
+  border-radius: 4px !important;
+  border: none;
+  font-size: 13px !important;
+}
+
+.filter-text::placeholder {
+  color: #464E5F;
+}
+
+.table-header {
+  color: #9A9FAB;
+  text-transform: uppercase;
+  font-size: 12px;
+  background-color: #F3F6F9;
+}
+.table-header th {
+  color: #9A9FAB;
+  height: 43px;
+}
+.table-header th a, .table-header th span {
+  color: #9A9FAB
+}
+
+.table-header tr {
+  height: 43px
+}
+
+.table-header a {
+  color: #9A9FAB
+}
+
+td {
+  vertical-align: middle;
+  text-wrap: nowrap;
+}
+
+table thead th {
+  vertical-align: middle
+}
+
+.table td.fit, .table th.fit {
+  white-space: nowrap;
+  width: 1%;
+}
+
+.table-header th:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.table-header th:last-child {
+  border-radius: 0 6px 6px 0
+}
+
+.table-body {
+  font-size: 14px
+}
+
+.table-body tr {
+  border-bottom: 1px solid #E5EAEE
+}
+
+.table-body tr > td:last-child {
+  margin-left: 5px
+}
+
+.grid-description {
+  color: #707070
+}
+
+.filters-area {
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+.filters-area .filters-text {
+  text-transform: uppercase;
+}
+
+/* @media screen and (min-width: 768px)
+    .filter-text
+        max-width: 226px !important
+
+@media screen and (max-width: 768px)
+    .search-icon
+        background-color: #E6EDF5 !important
+    .filter-text.mobile-100
+        max-width: 100% !important
+    .filters-area.mobile-collapse
+        background-color: rgba(100, 132, 182, 0.05)
+        border: 1px solid rgba(#401F16, 0.05) */

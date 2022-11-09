@@ -1,0 +1,25 @@
+<main class="w-25 m-auto border card">
+  <div class="card-header text-center">
+    <h3>Գրանցվել</h3>
+  </div>
+  <form #form="ngForm" class="card-body" (submit)="submit()">
+    <app-input
+      label="Էլեկտրոնային հասցե"
+      name="email"
+      [(value)]="loginModel.email"></app-input>
+    <app-input
+      label="Գաղտնաբառ"
+      name="password"
+      type="password"
+      [(value)]="loginModel.password"></app-input>
+    <div class="d-flex justify-content-end mb-2">
+      <small>
+        <a routerLink="/account/forgot-password" class="text-decoration-none">
+          Մոռացե՞լ եք գաղտնաբառը
+        </a>
+      </small>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 p-2">Գրանցվել</button>
+  </form>
+  
+</main>

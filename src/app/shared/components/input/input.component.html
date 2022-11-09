@@ -1,0 +1,17 @@
+<div class="w-100" class="mb-3" provide-parent-form>
+  <label class="mb-1">{{label}}<span *ngIf="required" class="text-danger"> *</span></label>
+  <div class="mb-3">
+    <input
+      [type]="type"
+      class="form-control"
+      [ngClass]="{'border-danger': (inputRef.touched || form.submitted) && inputRef.invalid}"
+      [required]="required"
+      [ngModel]="value"
+      (ngModelChange)="valueChange.emit($event)"
+      [name]="name"
+      #inputRef="ngModel">
+    <div *ngIf="(inputRef.touched || form.submitted) && inputRef.invalid">
+      <small class="text-danger" *ngIf="inputRef.errors.required">Պարտադիր է լրացնել</small>
+    </div> 
+  </div>
+</div>

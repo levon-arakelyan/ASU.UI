@@ -1,0 +1,16 @@
+<app-advanced-table
+  (reloadData)='reloadWithData($event)'
+  [filterText]='filter'
+  [order]='pagedTeachers.order'
+  [items]='pagedTeachers.data'
+  [totalRecords]='pagedTeachers.totalRecords'
+  [currentPage]='pagedTeachers.page'
+  listName="Դասախոսներ">
+
+  <app-advanced-table-column key="firstName" title="Անուն" [sort]="true" [filter]="true">
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="lastName" title="Ազգանուն">
+  </app-advanced-table-column>
+
+</app-advanced-table>
