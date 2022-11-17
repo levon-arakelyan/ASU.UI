@@ -1,24 +1,19 @@
 <app-advanced-table
-  (reloadData)='reloadWithData($event)'
-  [filterText]='filter'
-  [order]='pagedDepartments.order'
-  [items]='pagedDepartments.data'
-  [totalRecords]='pagedDepartments.totalRecords'
-  [currentPage]='pagedDepartments.page'
+  [serviceWithGetPaged]="departmentsService"
   listName="Ամբիոններ">
 
-  <app-advanced-table-column key="name" title="Անուն" [sort]="true" [filter]="true">
+  <app-advanced-table-column key="name" title="Անուն" [sort]="true">
   </app-advanced-table-column>
 
-  <app-advanced-table-column key="faculty" title="Ֆակուլտետ">
+  <app-advanced-table-column key="faculty.name" title="Ֆակուլտետ" [sort]="true">
     <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
       {{item.faculty.name}}
     </ng-template>
   </app-advanced-table-column>
 
-  <app-advanced-table-column key="facultyHead" title="Ամբիոնի վարիչ">
+  <app-advanced-table-column key="departmentHead.head.fullName" title="Ամբիոնի վարիչ" [sort]="true">
     <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
-      {{item.departmentHead?.head?.firstName}} {{item.departmentHead?.head?.lastName}}
+      {{item.departmentHead?.head?.fullName}}
     </ng-template>
   </app-advanced-table-column>
 

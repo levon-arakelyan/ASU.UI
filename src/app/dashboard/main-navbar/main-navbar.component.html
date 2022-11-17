@@ -1,33 +1,52 @@
-<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-sm navbar-light mb-3" style="background-color: #e3f2fd;">
   <div class="container-lg">
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> -->
     <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="./departments">Ամբիոններ</a>
+          <a class="nav-link" routerLink="/dashboard/faculties">Ֆակուլտետներ</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/dashboard/departments">Ամբիոններ</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/dashboard/professions">Մասնագիտություններ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="./teachers">Դասախոսներ</a>
+          <a class="nav-link" routerLink="/dashboard/teachers">Դասախոսներ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Դասացուցակներ</a>
+          <a class="nav-link" routerLink="/dashboard/courses">Կուրսեր</a>
+        </li>
+        <li class="nav-item">
+          <div ngbDropdown class="nav-link">
+            <span ngbDropdownToggle id="dropdownSubjects" class="cursor-pointer">Առարկաներ</span>
+            <div ngbDropdownMenu aria-labelledby="dropdownSubjects">
+              <a role="button" class="nav-link" ngbDropdownItem routerLink="/dashboard/subjects">
+                Առարկաների ցանկ
+              </a>
+              <a role="button" class="nav-link" ngbDropdownItem routerLink="/dashboard/subject-groups">
+                Առարկաների խմբերի ցանկ
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard/schedules">Դասացուցակներ</a>
         </li>
       </ul>
       <div ngbDropdown>
-        <span ngbDropdownToggle id="dropdownUser" class="cursor-pointer">{{user.lastName}} {{user.firstName}}</span>
+        <span ngbDropdownToggle id="dropdownUser" class="cursor-pointer">{{user.firstName}} {{user.lastName}} </span>
         <div ngbDropdownMenu aria-labelledby="dropdownUser">
           <button ngbDropdownItem>
-            <i class="bi bi-person-circle m-1"></i>
+            <fa-icon [icon]="faUserCircle"></fa-icon>
             Անձնական տվյալներ
           </button>
           <button ngbDropdownItem>
-            <i class="bi bi-gear-fill m-1"></i>
+            <fa-icon [icon]="faCog"></fa-icon>
             Կարգավորումներ
           </button>
           <button ngbDropdownItem (click)="logout()">
-            <i class="bi bi-box-arrow-right m-1"></i>
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
             Դուրս գալ
           </button>
         </div>

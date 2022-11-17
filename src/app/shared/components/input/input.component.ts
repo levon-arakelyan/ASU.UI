@@ -10,9 +10,10 @@ export class InputComponent {
   @Input() label: string;
   @Input() required: boolean = true;
   @Input() name: string;
-  @Input() type: 'text' | 'password' = 'text';
-  @Input() value: string = '';
-  @Output() valueChange: EventEmitter<string> = new EventEmitter<string>();
+  @Input() type: 'text' | 'password' | 'number' = 'text';
+  @Input() value: any = '';
+  @Input() disabled: boolean = false;
+  @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(public form: NgForm) { }
- }
+}

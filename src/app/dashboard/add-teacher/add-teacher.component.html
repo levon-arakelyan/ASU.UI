@@ -1,0 +1,67 @@
+<div>
+  <h3>Ավելացնել դասախոս</h3>
+  <form #form="ngForm" class="mt-4" (submit)="submit()">
+    <div class="row">
+      <div class="col-6">
+        <app-input
+          label="Անուն"
+          name="name"
+          [(value)]="newTeacher.firstName"></app-input>
+      </div>
+      <div class="col-6">
+        <app-input
+          label="Ազգանուն"
+          name="lastName"
+          [(value)]="newTeacher.lastName"></app-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <app-input
+          label="Էլեկրոնային հասցե"
+          name="email"
+          [(value)]="newTeacher.email"></app-input>
+      </div>
+      <div class="col-6">
+        <app-input
+          label="Աշխատավարձ"
+          name="salary"
+          type="number"
+          [(value)]="newTeacher.salary"></app-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <app-select
+          label="Ամբիոն"
+          name="department"
+          [items]="departmentsList"
+          [(value)]="newTeacher.departmentId"></app-select>
+      </div>
+      <div class="col-6">
+        <app-input
+          label="Դրույք"
+          name="rate"
+          type="number"
+          [(value)]="newTeacher.rate"></app-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <app-checkbox
+          label="Ամբիոնի վարիչ"
+          name="isDepartmentHead"
+          [disabled]="!newTeacher.departmentId"
+          [(value)]="newTeacher.isDepartmentHead"></app-checkbox>
+        <app-checkbox
+          label="Ֆակուլտետի դեկան"
+          name="isFacultyHead"
+          [disabled]="!newTeacher.departmentId"
+          [(value)]="newTeacher.isFacultyHead"></app-checkbox>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success">Ավելացնել</button>
+    </div>
+  </form>
+</div>

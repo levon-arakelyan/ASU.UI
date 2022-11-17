@@ -1,0 +1,31 @@
+<app-advanced-table
+  [serviceWithGetPaged]="coursesService"
+  listName="Կուրսեր">
+
+  <app-advanced-table-column key="courseName" title="Անուն" [sort]="true">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.courseName}}
+    </ng-template>
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="degree" title="Աստիճան">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{courseDegrees[item.degree]}}
+    </ng-template>
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="educationType" title="Ուսման ձեվ">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{educationTypes[item.educationType]}}
+    </ng-template>
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="groupsNumber" title="Խմբեր" [sort]="true">
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="students" title="Ուսանողներ">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.students?.length}}
+    </ng-template>
+  </app-advanced-table-column>
+</app-advanced-table>

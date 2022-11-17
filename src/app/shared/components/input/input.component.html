@@ -2,6 +2,7 @@
   <label class="mb-1">{{label}}<span *ngIf="required" class="text-danger"> *</span></label>
   <div class="mb-3">
     <input
+      [attr.disabled]="disabled ? true : null"
       [type]="type"
       class="form-control"
       [ngClass]="{'border-danger': (inputRef.touched || form.submitted) && inputRef.invalid}"
@@ -9,9 +10,12 @@
       [ngModel]="value"
       (ngModelChange)="valueChange.emit($event)"
       [name]="name"
+      [attr.step]="type == 'number' ? 0.01 : null"
       #inputRef="ngModel">
     <div *ngIf="(inputRef.touched || form.submitted) && inputRef.invalid">
-      <small class="text-danger" *ngIf="inputRef.errors.required">Պարտադիր է լրացնել</small>
+      <div>
+        <small class="text-danger" *ngIf="inputRef.errors.required">Պարտադիր է լրացնել</small>
+      </div>
     </div> 
   </div>
 </div>

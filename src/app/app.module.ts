@@ -3,6 +3,9 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { AppSettingsService } from './shared/services/app-settings.service';
@@ -31,7 +34,10 @@ export function InitializeAppFactory(applicationConfigLoad: AppSettingsService) 
     BrowserModule,
     NgbModule,
     RouterModule.forRoot(routes),
-    SharedModule
+    SharedModule,
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {

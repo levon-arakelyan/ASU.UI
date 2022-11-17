@@ -1,0 +1,12 @@
+<div class="form-check">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    [ngModel]="value"
+    (ngModelChange)="valueChange.emit($event)"
+    [attr.disabled]="disabled ? true : null"
+    [name]="name">
+  <label class="form-check-label">
+    {{label}}
+  </label>
+</div>

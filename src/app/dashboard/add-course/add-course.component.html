@@ -1,0 +1,49 @@
+<div>
+  <h3>Ավելացնել կուրս</h3>
+  <form #form="ngForm" class="mt-4" (submit)="submit()">
+    <div class="row">
+      <div class="col-6">
+        <app-select
+          label="Աստիճան"
+          name="degree"
+          [items]="degreesList"
+          [(value)]="newCourse.degree"></app-select>
+      </div>
+      <div class="col-6">
+        <app-input
+          label="Կուրսի համար"
+          name="name"
+          type="number"
+          [(value)]="newCourse.number"></app-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <app-select
+          label="Մասնագիտություն"
+          name="profession"
+          [items]="professionsList"
+          [(value)]="newCourse.professionId"></app-select>
+      </div>
+      <div class="col-6">
+        <app-input
+          label="Խմբերի քանակ"
+          name="groupsNumber"
+          type="number"
+          [(value)]="newCourse.groupsNumber"></app-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <app-select
+          label="Ուսման ձև"
+          name="educationType"
+          [items]="educationTypesList"
+          [(value)]="newCourse.educationType"></app-select>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success">Ավելացնել</button>
+    </div>
+  </form>
+</div>

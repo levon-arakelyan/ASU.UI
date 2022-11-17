@@ -1,16 +1,41 @@
-<app-advanced-table
-  (reloadData)='reloadWithData($event)'
-  [filterText]='filter'
-  [order]='pagedTeachers.order'
-  [items]='pagedTeachers.data'
-  [totalRecords]='pagedTeachers.totalRecords'
-  [currentPage]='pagedTeachers.page'
+<app-advanced-table 
+  [serviceWithGetPaged]="teachersService"
   listName="Դասախոսներ">
 
-  <app-advanced-table-column key="firstName" title="Անուն" [sort]="true" [filter]="true">
+  <app-advanced-table-column key="firstName" title="Անուն" [sort]="true">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      <div class="d-flex align-items-center">
+        <span class="me-1">{{item.firstName}}</span>
+        <span *ngIf="item.facultyHead">
+          <fa-icon [icon]="faInfoCircle" ngbTooltip="Դեկան"></fa-icon>
+        </span>
+        <span *ngIf="item.departmentHead">
+          <fa-icon [icon]="faInfoCircle" ngbTooltip="Ամբիոնի վարիչ"></fa-icon>
+        </span>
+      </div>
+    </ng-template>
   </app-advanced-table-column>
 
-  <app-advanced-table-column key="lastName" title="Ազգանուն">
+  <app-advanced-table-column key="lastName" title="Ազգանուն" [sort]="true">
   </app-advanced-table-column>
 
+  <app-advanced-table-column key="email" title="Էլ․ հասցե" [sort]="true">
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="rate" title="Դրույք" [sort]="true">
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="department.name" title="Ամբիոն" [sort]="true">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.department.name}}
+    </ng-template>
+  </app-advanced-table-column>
+
+  <app-advanced-table-column>
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      <a role="button" (click)="editTeacher(item.id)">
+        <fa-icon [icon]="faPencilAlt" ></fa-icon>
+      </a>
+    </ng-template>
+  </app-advanced-table-column>
 </app-advanced-table>

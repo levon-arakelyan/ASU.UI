@@ -3,6 +3,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { AuthService } from "../shared/services/auth.service";
 import { InterceptorService } from "../shared/services/interceptor.service";
 import { SharedModule } from "../shared/shared.module";
@@ -26,7 +27,8 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ],
   providers: [
     {

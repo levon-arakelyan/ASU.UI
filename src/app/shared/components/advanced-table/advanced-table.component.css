@@ -39,7 +39,7 @@
 
 td {
   vertical-align: middle;
-  text-wrap: nowrap;
+  padding: 10px 4px;
 }
 
 table thead th {
@@ -86,16 +86,3 @@ table thead th {
 .filters-area .filters-text {
   text-transform: uppercase;
 }
-
-/* @media screen and (min-width: 768px)
-    .filter-text
-        max-width: 226px !important
-
-@media screen and (max-width: 768px)
-    .search-icon
-        background-color: #E6EDF5 !important
-    .filter-text.mobile-100
-        max-width: 100% !important
-    .filters-area.mobile-collapse
-        background-color: rgba(100, 132, 182, 0.05)
-        border: 1px solid rgba(#401F16, 0.05) */

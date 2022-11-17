@@ -12,20 +12,32 @@ import { AdvancedTableColumnComponent } from "./components/advanced-table-column
 import { AdvancedTableComponent } from "./components/advanced-table/advanced-table.component";
 import { PagerComponent } from "./components/pager/pager.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { RouterModule } from "@angular/router";
+import { SelectComponent } from "./components/select/select.component";
+import { CheckboxComponent } from "./components/checkbox/checkbox.component";
+import { MinValueValidatorDirective } from "./directives/min-value";
+import { PageLoadingComponent } from "./components/page-loading/page-loading.component";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   imports: [
     HttpClientModule,
     CommonModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    RouterModule,
+    FontAwesomeModule
   ],
   declarations: [
     InputComponent,
+    SelectComponent,
+    CheckboxComponent,
     ProvideParentFormDirective,
+    MinValueValidatorDirective,
     AdvancedTableColumnComponent,
     AdvancedTableComponent,
-    PagerComponent
+    PagerComponent,
+    PageLoadingComponent
   ],
   providers: [
     AccountsService,
@@ -43,10 +55,14 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
   ],
   exports: [
     InputComponent,
+    SelectComponent,
+    CheckboxComponent,
     ProvideParentFormDirective,
+    MinValueValidatorDirective,
     AdvancedTableColumnComponent,
     AdvancedTableComponent,
-    PagerComponent
+    PagerComponent,
+    PageLoadingComponent
   ]
 })
 export class SharedModule {}

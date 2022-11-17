@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { UserRole } from "src/app/core/enums/user-role";
 import { AuthenticatedUser } from "src/app/core/models/authenticated-user-model";
 import { AuthService } from "src/app/shared/services/auth.service";
+import { faUserCircle, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-main-navbar',
@@ -11,7 +12,13 @@ import { AuthService } from "src/app/shared/services/auth.service";
 export class MainNavbarComponent implements OnInit{
   public user: AuthenticatedUser;
   public Role = UserRole;
+
+  public faUserCircle = faUserCircle;
+  public faCog = faCog;
+  public faSignOutAlt = faSignOutAlt;
+  
   constructor(private authService: AuthService) {
+
   }
 
   public ngOnInit(): void {

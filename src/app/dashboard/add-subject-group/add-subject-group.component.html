@@ -1,0 +1,17 @@
+<div>
+  <h3>Ավելացնել առարկաների խումբ</h3>
+  <form #form="ngForm" class="mt-4" (submit)="submit()">
+    <div class="row">
+      <div class="col-12">
+        <app-input
+          label="Անուն"
+          name="name"
+          [(value)]="newSubjectGroup.name"></app-input>
+      </div>
+    </div>
+    
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success">Ավելացնել</button>
+    </div>
+  </form>
+</div>

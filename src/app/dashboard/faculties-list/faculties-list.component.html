@@ -1,0 +1,19 @@
+<app-advanced-table 
+  [serviceWithGetPaged]="facultiesService"
+  listName="Ֆակուլտետներ">
+
+  <app-advanced-table-column key="name" title="Անուն" [sort]="true">
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="facultyHead.head.fullName" title="Դեկան" [sort]="true">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.facultyHead?.head?.firstName}} {{item.facultyHead?.head?.lastName}}
+    </ng-template>
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="departments" title="Ամբիոններ">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.departments.length}}
+    </ng-template>
+  </app-advanced-table-column>
+</app-advanced-table>
