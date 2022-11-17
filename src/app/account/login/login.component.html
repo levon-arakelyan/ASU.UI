@@ -19,7 +19,10 @@
         </a>
       </small>
     </div>
-    <button type="submit" class="btn btn-primary w-100 p-2">Գրանցվել</button>
+    <button type="submit" class="btn btn-primary w-100 p-2" [disabled]="loading">
+      Գրանցվել
+      <fa-icon *ngIf="loading" [icon]="faSpinner" [spin]="true" [styles]="{'color': 'white'}" class="ms-1"></fa-icon>
+    </button>
   </form>
   
 </main>

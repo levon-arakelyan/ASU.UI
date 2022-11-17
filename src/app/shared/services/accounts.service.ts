@@ -15,15 +15,15 @@ export class AccountsService extends ApiBaseService implements IAccountsService 
   constructor(private http: HttpClient, private settings: AppSettingsService) {
     super();
     this.settings.onConfigLoaded.subscribe(() => {
-      this.endpoint = `${this.settings.serverUrl}accounts/`;
+      this.endpoint = `${this.settings.serverUrl}accounts`;
     })
   }
 
   public login(loginModel: LoginModel): Observable<Token> {
-    return this.http.post<Token>(`${this.endpoint}login`, loginModel)
+    return this.http.post<Token>(`${this.endpoint}/login`, loginModel)
   }
 
   public get(): Observable<AuthenticatedUser> {
-    return this.http.get<AuthenticatedUser>(this.endpoint);
+    return this.http.get<AuthenticatedUser>(`${this.endpoint}/get`);
   }
 }

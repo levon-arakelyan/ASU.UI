@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { TeacherDto } from "src/app/core/dto/teacher-dto";
+import { AddTeacherModel } from "src/app/core/models/add-teacher-model";
 import { PagedItemsList, PagedListOrder } from "src/app/core/models/paged-list-model";
 import { ApiBaseService } from "src/app/core/services/api-base-service";
 import { ITeachersService } from "src/app/core/services/iteachers.service";
@@ -15,12 +16,20 @@ export class TeachersService extends ApiBaseService implements ITeachersService 
   }
 
   public getPaged(filter: string, page: number, pageSize: number, order: PagedListOrder): Observable<PagedItemsList<TeacherDto>> {
-    return this.http.get<PagedItemsList<TeacherDto>>(this.endpoint, { params: {
+    return this.http.get<PagedItemsList<TeacherDto>>(`${this.endpoint}/get-paged`, { params: {
       page,
       pageSize,
       orderBy: order.orderBy,
-      orderDirection: order.direction,
+      direction: order.direction,
       filter,
     }});
+  }
+
+  public add(department: AddTeacherModel): Observable<void> {
+    return this.http.post<void>(`${this.endpoint}/add`, department); 
+  }
+
+  public get(teacherId: number): Observable<TeacherDto> {
+    return this.http.get<TeacherDto>(`${this.endpoint}/${teacherId}`);
   }
 }

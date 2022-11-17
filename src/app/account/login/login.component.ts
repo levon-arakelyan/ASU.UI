@@ -3,28 +3,36 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { LoginModel } from "src/app/core/models/login-model";
 import { AuthService } from "src/app/shared/services/auth.service";
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  @ViewChild('form') form!: NgForm;
+export class LoginComponent {
+  @ViewChild('form') form: NgForm;
 
   public loginModel: LoginModel = new LoginModel();
+  public loading: boolean = false;
+
+  public faSpinner = faSpinner;
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-  }
-
   public submit(): void {
-    this.authService.login(this.loginModel).subscribe(() => {
-      this.router.navigateByUrl('/dashboard/main-page')
+    this.loading = true;
+    this.authService.login(this.loginModel).subscribe({
+      next: () => {
+        this.loading = false;
+        this.router.navigateByUrl('/dashboard/main-page');
+      },
+      error: () => {
+        this.loading = false;
+      }
     });
   }
 }

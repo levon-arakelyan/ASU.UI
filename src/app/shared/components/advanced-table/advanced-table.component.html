@@ -1,3 +1,5 @@
+<app-page-loading [active]="loading"></app-page-loading>
+
 <div class="d-flex flex-wrap filters-area" [ngClass]="{'mobile-collapse': shouldFiltersBeCollapsed}">
   <div
     *ngIf="shouldFiltersBeCollapsed"
@@ -25,9 +27,8 @@
   <div
     class="d-flex justify-content-between align-items-center"
     [ngClass]="{'flex-wrap': !shouldFiltersBeCollapsed}">
-    <div>
-      <h3>{{listName}}</h3>
-    </div>
+    <h3>{{listName}}</h3>
+
     <div [ngClass]="{'w-100 w-md-auto mb-3 ': shouldFiltersBeCollapsed}" class="d-flex mb-md-0" >
       <input
         type="text"
@@ -37,23 +38,11 @@
         [(ngModel)]="filterText"
         (keydown.enter)="doSearch()"
         [placeholder]="placeholder">
-      <button
-        *ngIf='hasSearchBar && hasClearButton'
-        class="btn btn-warning form-clear"
-        type="button"
-        (click)="clearFilters()"
-        title="Clear filters">
-        <i class="fa fa-times" aria-hidden="true"></i>
-        {{clearLabel}}
-      </button>
-      <!-- <button
-        *ngIf='hasSearchBar'
-        class="btn text-primary icon-container mr-0 mr-md-4"
-        [ngClass]="{'search-icon': shouldFiltersBeCollapsed}"
-        type="button"
-        (click)="doSearch()">
-        <i class="bi bi-search"></i>
-      </button> -->
+      <a routerLink="./add">
+        <button class="btn btn-success">
+          <fa-icon [icon]="faPlus"></fa-icon>
+        </button>
+      </a>
     </div>
     <div *ngIf="contentOutsideFromFilterZone" [ngClass]="{'d-none d-md-block': shouldFiltersBeCollapsed}">
       <ng-template [ngTemplateOutlet]="contentOutsideFromFilterZone"></ng-template>
@@ -75,7 +64,7 @@
       <th *ngFor="let column of columns" [ngClass]="column.class">
         <a *ngIf="column.sort" role="button" (click)="setOrderBy(column.key)">
           {{column.title}}
-          <div [ngClass]="'bi bi'+ getOrderClass(column.key)"></div>
+          <i [ngClass]="'bi bi-'+ getOrderClass(column.key)"></i>
         </a>
         <span *ngIf="!column.sort">{{column.title}}</span>
       </th>
@@ -98,13 +87,13 @@
 <app-pager
   [hideIfOnePage]="true"
   [records]="totalRecords"
-  [page]="currentPage"
+  [page]="page"
   [pageSize]="pageSize"
   (onChanagePage)="setPage($event)">
 </app-pager>
-<div *ngIf="items != null && items.length == 0" class="jumbotron text-center text-secondary">
+<div *ngIf="items != null && items.length == 0 && !loading" class="jumbotron text-center text-secondary">
   <h1>Արդյունք չի գտնվել</h1>
 </div>
-<div *ngIf="items == null" class="jumbotron text-center text-secondary">
+<div *ngIf="items == null || loading" class="jumbotron text-center text-secondary">
   <h1>Սպասեք...</h1>
 </div>

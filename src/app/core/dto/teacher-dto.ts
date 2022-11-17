@@ -9,9 +9,15 @@ export class TeacherDto {
   public id: number;
   public firstName: string;
   public lastName: string;
+  public get fullName(): string {
+    return this.firstName + ' ' + this.lastName;
+  }
   public email: string;
   public salary: number;
   public rate: number;
+  public departmentId: number;
+  public isFacultyHead: boolean;
+  public isDepartmentHead: boolean;
   public department: DepartmentDto;
   public teacherSubjects: TeacherSubjectDto[];
   public courseSubjects: CourseSubjectDto[];

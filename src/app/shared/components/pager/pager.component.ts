@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, HostListener, OnInit } from '@a
 import { Pager } from './pager';
 import { pagingBreakpoints } from 'src/app/core/constants/paging-breakpoints';
 import { breakpoints } from 'src/app/core/constants/breakpoints';
+import { faAngleRight, faAngleDoubleRight, faAngleLeft, faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-pager',
@@ -29,6 +30,11 @@ export class PagerComponent implements OnInit {
   @Output() public onChanagePage: EventEmitter<number> = new EventEmitter<number>()
 
   public pager: Pager = new Pager();
+
+  public faAngleRight = faAngleRight;
+  public faAngleDoubleRight = faAngleDoubleRight;
+  public faAngleLeft = faAngleLeft;
+  public faAngleDoubleLeft = faAngleDoubleLeft;
 
   constructor() { }
 

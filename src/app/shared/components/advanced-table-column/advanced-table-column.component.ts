@@ -9,7 +9,6 @@ export class AdvancedTableColumnComponent implements OnInit {
   @Input('key') public key: string = "";
   @Input('title') public title: string = "";
   @Input('sort') public sort: boolean = false;
-  @Input('filter') public filter: boolean = false;
   @Input('class') public class: string = "";
 
   constructor() { }

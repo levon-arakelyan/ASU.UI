@@ -1,0 +1,23 @@
+<div>
+  <h3>Ավելացնել ամբիոն</h3>
+  <form #form="ngForm" class="mt-4" (submit)="submit()">
+    <div class="row">
+      <div class="col-6">
+        <app-input
+          label="Անուն"
+          name="name"
+          [(value)]="newDepartment.name"></app-input>
+      </div>
+      <div class="col-6">
+        <app-select
+          label="Ֆակուլտետ"
+          name="faculty"
+          [items]="faculties"
+          [(value)]="newDepartment.facultyId"></app-select>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success">Ավելացնել</button>
+    </div>
+  </form>
+</div>
