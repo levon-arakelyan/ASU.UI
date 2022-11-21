@@ -10,7 +10,7 @@ import { TeachersService } from "../services/teachers.service";
 })
 export class EditTeacherComponent implements OnInit {
   private teacherId: number;
-  private teacher: TeacherDto = new TeacherDto();
+  public teacher: TeacherDto = new TeacherDto();
   public loading: boolean = false;
 
   constructor(
@@ -35,6 +35,7 @@ export class EditTeacherComponent implements OnInit {
       next: res => {
         this.teacher = res;
         this.loading = false;
+        console.log(res)
       },
       error: () => {
         this.loading = false;

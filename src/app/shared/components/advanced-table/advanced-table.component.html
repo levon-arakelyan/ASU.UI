@@ -58,7 +58,7 @@
   {{description}}
 </div>
 
-<table class="table table-sm table-borderless mt-4">
+<table class="table table-sm table-borderless mt-4" *ngIf="!loading">
   <thead class="global-bg-th table-header">
     <tr>
       <th *ngFor="let column of columns" [ngClass]="column.class">
