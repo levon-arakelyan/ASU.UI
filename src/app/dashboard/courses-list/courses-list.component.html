@@ -28,4 +28,12 @@
       {{item.students?.length}}
     </ng-template>
   </app-advanced-table-column>
+
+  <app-advanced-table-column>
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      <a role="button" routerLink="/dashboard/courses/{{item.id}}">
+        <fa-icon [icon]="faPencilAlt" ></fa-icon>
+      </a>
+    </ng-template>
+  </app-advanced-table-column>
 </app-advanced-table>

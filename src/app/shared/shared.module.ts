@@ -18,6 +18,9 @@ import { CheckboxComponent } from "./components/checkbox/checkbox.component";
 import { MinValueValidatorDirective } from "./directives/min-value";
 import { PageLoadingComponent } from "./components/page-loading/page-loading.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { MultiselectComponent } from "./components/multiselect/multiselect.component";
+import { MultiselectAutocompleteComponent } from "./components/multiselect-autocomplete/multiselect-autocomplete.component";
+import { AutocompleteComponent } from "./components/autocomplete/autocomplete.component";
 
 @NgModule({
   imports: [
@@ -37,7 +40,10 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     AdvancedTableColumnComponent,
     AdvancedTableComponent,
     PagerComponent,
-    PageLoadingComponent
+    PageLoadingComponent,
+    AutocompleteComponent,
+    MultiselectComponent,
+    MultiselectAutocompleteComponent
   ],
   providers: [
     AccountsService,
@@ -62,7 +68,10 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     AdvancedTableColumnComponent,
     AdvancedTableComponent,
     PagerComponent,
-    PageLoadingComponent
+    PageLoadingComponent,
+    AutocompleteComponent,
+    MultiselectComponent,
+    MultiselectAutocompleteComponent
   ]
 })
 export class SharedModule {}

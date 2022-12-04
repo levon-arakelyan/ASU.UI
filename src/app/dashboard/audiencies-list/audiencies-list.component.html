@@ -1,0 +1,17 @@
+<app-advanced-table
+  [serviceWithGetPaged]="audienciesService"
+  listName="Լսարաններ">
+
+  <app-advanced-table-column key="number" title="Համար" [sort]="true">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{item.number}}
+    </ng-template>
+  </app-advanced-table-column>
+
+  <app-advanced-table-column key="type" title="Տիպ">
+    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
+      {{audienciesTypes[item.type]}}
+    </ng-template>
+  </app-advanced-table-column>
+  
+</app-advanced-table>

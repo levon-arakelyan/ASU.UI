@@ -11,7 +11,6 @@ export class ScheduleDto {
   public dayOfWeek: DayOfWeek;
   public classNumber: ClassNumber;
   public studentGroup: StudentGroup;
-  public count: number;
   public course: CourseDto;
   public subject: SubjectDto;
   public audience: AudienceDto;

@@ -3,7 +3,6 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AuthService } from "../shared/services/auth.service";
 import { InterceptorService } from "../shared/services/interceptor.service";
@@ -31,6 +30,14 @@ import { TeachersService } from "./services/teachers.service";
 import { SubjectGroupsListComponent } from "./subject-groups-list/subject-groups-list.component";
 import { SubjectsListComponent } from "./subjects-list/subjects-list.component";
 import { TeachersListComponent } from "./teachers-list/teachers-list.component";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AddScheduleComponent } from "./add-schedule/add-schedule.component";
+import { EditCourseComponent } from "./edit-course/edit-course.component";
+import { ScheduleComponent } from "./schedule/schedule.component";
+import { AddAudienceComponent } from "./add-audience/add-audience.component";
+import { AudienciesListComponent } from "./audiencies-list/audiencies-list.component";
+import { AudienciesService } from "./services/audiencies.service";
+import { SchedulesService } from "./services/schedules.service";
 
 const routes: Routes = [
   { path: '', component: MainNavbarComponent, children:
@@ -46,10 +53,13 @@ const routes: Routes = [
       { path: 'teachers/:id', component: EditTeacherComponent },
       { path: 'courses', component: CoursesListComponent },
       { path: 'courses/add', component: AddCourseComponent },
+      { path: 'courses/:id', component: EditCourseComponent },
       { path: 'subjects', component: SubjectsListComponent },
       { path: 'subjects/add', component: AddSubjectComponent },
       { path: 'subject-groups', component: SubjectGroupsListComponent },
       { path: 'subject-groups/add', component: AddSubjectGroupComponent },
+      { path: 'audiencies', component: AudienciesListComponent },
+      { path: 'audiencies/add', component: AddAudienceComponent },
       { path: '', redirectTo: 'faculties', pathMatch: 'full'},
     ]
   },
@@ -66,6 +76,7 @@ const routes: Routes = [
     CoursesListComponent,
     SubjectsListComponent,
     SubjectGroupsListComponent,
+    AudienciesListComponent,
     AddTeacherComponent,
     AddFacultyComponent,
     AddDepartmentComponent,
@@ -73,7 +84,11 @@ const routes: Routes = [
     AddCourseComponent,
     AddSubjectGroupComponent,
     AddSubjectComponent,
-    EditTeacherComponent
+    AddScheduleComponent,
+    AddAudienceComponent,
+    EditTeacherComponent,
+    EditCourseComponent,
+    ScheduleComponent
   ],
   imports: [
     NgbModule,
@@ -96,7 +111,9 @@ const routes: Routes = [
     ProfessionsService,
     CoursesService,
     SubjectsService,
-    SubjectGroupsService
+    SubjectGroupsService,
+    AudienciesService,
+    SchedulesService
   ],
 })
 export class DashboardModule {}

@@ -1,0 +1,38 @@
+
+<div class="w-100" class="mb-3" provide-parent-form>
+  <!-- Dummy input to use ngModel -->
+  <input #multiselect="ngModel" [hidden]="true" [name]="name" [(ngModel)]="_selectedItemsIds">
+
+  <label class="mb-1">{{label}}<span *ngIf="required" class="text-danger"> *</span></label>
+  <div ngbDropdown class="mb-3" autoClose="outside">
+    <button
+      type="button"
+      class="position-relative form-control text-start dropdown-toggle-btn"
+      [ngClass]="{ 'border-danger': (touched || form.submitted) && multiselect.invalid }"
+      id="subjectsDropdown"
+      ngbDropdownToggle
+      (focusout)="touched = true">
+      <div class="text-truncate items-names">
+        <span *ngIf="!selectedItemsNames.length">Ընտրել․․․</span>
+        <span *ngIf="selectedItemsNames.length > maxItemsCountToShow">Ընտրված է {{selectedItemsNames.length}} հատ</span>
+        <ng-container *ngIf="selectedItemsNames.length <= maxItemsCountToShow">
+          <span *ngFor="let item of selectedItemsNames; let isLast = last">
+            {{ item }}<ng-container *ngIf="!isLast">, </ng-container>
+          </span>
+        </ng-container>
+      </div>
+      <fa-icon [icon]="faAngleDown" class="dropdown-icon"></fa-icon>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="subjectsDropdown">
+      <button type="button" ngbDropdownItem *ngFor="let item of items" (click)="onItemClicked(item.id)" class="d-flex">
+        <app-checkbox [value]="selectedItemsIds.includes(item.id)"></app-checkbox>
+        {{ item.name }}
+      </button>
+    </div>
+    <div *ngIf="(touched || form.submitted) && multiselect.invalid">
+      <div>
+        <small class="text-danger" *ngIf="multiselect.errors.required">Պարտադիր է լրացնել</small>
+      </div>
+    </div> 
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { NgForm } from "@angular/forms";
   styleUrls: ['./input.component.html']
 })
 export class InputComponent {
+  @Input() placeholder: string = '';
   @Input() label: string;
   @Input() required: boolean = true;
   @Input() name: string;

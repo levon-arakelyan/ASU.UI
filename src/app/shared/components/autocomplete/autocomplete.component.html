@@ -1,0 +1,25 @@
+
+<div class="w-100" [ngClass]="{'mb-3': margin}" provide-parent-form>
+  <label *ngIf="label" [ngClass]="{'mb-1': margin}">{{label}}<span *ngIf="required" class="text-danger"> *</span></label>
+  <div [ngClass]="{'mb-3 mt-1': margin}">
+    <input
+      [required]="required"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [ngbTypeahead]="search"
+      (focus)="focus$.next($any($event).target.value)"
+	    (click)="click$.next($any($event).target.value)"
+      #autocompleteModel="ngModel"
+      [ngClass]="{ 'border-danger': (autocompleteModel.touched || form.submitted) && autocompleteModel.invalid }"
+      #autocomplete="ngbTypeahead"
+      class="form-control"
+      [name]="name"
+      [editable]="false"
+      [(ngModel)]="filterText">
+    <div *ngIf="(autocompleteModel.touched || form.submitted) && autocompleteModel.invalid">
+      <div>
+        <small class="text-danger" *ngIf="autocompleteModel.errors.required">Պարտադիր է լրացնել</small>
+      </div>
+    </div> 
+  </div>
+</div>

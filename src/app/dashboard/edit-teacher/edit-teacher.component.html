@@ -1,18 +1,28 @@
-<!-- <div>
-  <h3>Ավելացնել դասախոս</h3>
+<app-page-loading [active]="loading"></app-page-loading>
+
+<div *ngIf="!loading && !initialTeacher" class="jumbotron text-center text-secondary">
+  <h1>Դասախոսը չի գտնվել</h1>
+  <button class="btn btn-secondary mt-4" routerLink="../">
+    <fa-icon [icon]="faArrowLeft" class="me-1"></fa-icon>
+    <span>Վերադառնալ</span>
+  </button>
+</div>
+
+<div *ngIf="!loading && initialTeacher">
+  <h3>{{ initialTeacher.firstName }} {{ initialTeacher.lastName }}</h3>
   <form #form="ngForm" class="mt-4" (submit)="submit()">
     <div class="row">
       <div class="col-6">
         <app-input
           label="Անուն"
-          name="name"
-          [(value)]="newTeacher.firstName"></app-input>
+          name="firstName"
+          [(value)]="updatedTeacher.firstName"></app-input>
       </div>
       <div class="col-6">
         <app-input
           label="Ազգանուն"
           name="lastName"
-          [(value)]="newTeacher.lastName"></app-input>
+          [(value)]="updatedTeacher.lastName"></app-input>
       </div>
     </div>
     <div class="row">
@@ -20,14 +30,15 @@
         <app-input
           label="Էլեկրոնային հասցե"
           name="email"
-          [(value)]="newTeacher.email"></app-input>
+          [(value)]="updatedTeacher.email"></app-input>
       </div>
       <div class="col-6">
-        <app-input
-          label="Աշխատավարձ"
-          name="salary"
-          type="number"
-          [(value)]="newTeacher.salary"></app-input>
+        <app-select
+          label="Աստիճան"
+          name="degree"
+          [items]="degreesList"
+          [(value)]="updatedTeacher.degree">
+        </app-select>
       </div>
     </div>
     <div class="row">
@@ -36,14 +47,14 @@
           label="Ամբիոն"
           name="department"
           [items]="departmentsList"
-          [(value)]="newTeacher.departmentId"></app-select>
+          [(value)]="updatedTeacher.departmentId"></app-select>
       </div>
       <div class="col-6">
         <app-input
           label="Դրույք"
           name="rate"
           type="number"
-          [(value)]="newTeacher.rate"></app-input>
+          [(value)]="updatedTeacher.rate"></app-input>
       </div>
     </div>
     <div class="row">
@@ -51,17 +62,28 @@
         <app-checkbox
           label="Ամբիոնի վարիչ"
           name="isDepartmentHead"
-          [disabled]="!newTeacher.departmentId"
-          [(value)]="newTeacher.isDepartmentHead"></app-checkbox>
+          [disabled]="!updatedTeacher.departmentId"
+          [(value)]="editTeacherModel.isDepartmentHead"></app-checkbox>
         <app-checkbox
           label="Ֆակուլտետի դեկան"
           name="isFacultyHead"
-          [disabled]="!newTeacher.departmentId"
-          [(value)]="newTeacher.isFacultyHead"></app-checkbox>
+          [disabled]="!updatedTeacher.departmentId"
+          [(value)]="editTeacherModel.isFacultyHead"></app-checkbox>
+      </div>
+      <div class="col-6">
+        <app-multiselect-autocomplete
+          label="Առարկաներ"
+          name="teacherSubjects"
+          [required]="true"
+          [items]="subjectsList"
+          [(selectedItemsIds)]="editTeacherModel.subjectIds"></app-multiselect-autocomplete>
       </div>
     </div>
     <div class="d-flex justify-content-end">
-      <button type="submit" class="btn btn-success">Ավելացնել</button>
+      <button type="submit" class="btn btn-success" [disabled]="editLoading">
+        Պահպանել
+        <fa-icon *ngIf="editLoading" [icon]="faSpinner" [spin]="true"></fa-icon>
+      </button>
     </div>
   </form>
-</div> -->
+</div>

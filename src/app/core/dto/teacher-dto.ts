@@ -1,3 +1,4 @@
+import { TeacherDegree } from "../enums/teacher-degree";
 import { CourseSubjectDto } from "./course-subject-dto";
 import { DepartmentDto } from "./department-dto";
 import { DepartmentHeadDto } from "./department-head-dto";
@@ -13,11 +14,8 @@ export class TeacherDto {
     return this.firstName + ' ' + this.lastName;
   }
   public email: string;
-  public salary: number;
   public rate: number;
-  public departmentId: number;
-  public isFacultyHead: boolean;
-  public isDepartmentHead: boolean;
+  public degree: TeacherDegree;
   public department: DepartmentDto;
   public teacherSubjects: TeacherSubjectDto[];
   public courseSubjects: CourseSubjectDto[];

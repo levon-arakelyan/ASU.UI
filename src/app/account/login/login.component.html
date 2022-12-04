@@ -1,6 +1,6 @@
-<main class="w-25 m-auto border card">
+<main class="w-25 m-auto border card main-container">
   <div class="card-header text-center">
-    <h3>Գրանցվել</h3>
+    <h3>Մտնել</h3>
   </div>
   <form #form="ngForm" class="card-body" (submit)="submit()">
     <app-input
@@ -20,7 +20,7 @@
       </small>
     </div>
     <button type="submit" class="btn btn-primary w-100 p-2" [disabled]="loading">
-      Գրանցվել
+      Մտնել
       <fa-icon *ngIf="loading" [icon]="faSpinner" [spin]="true" [styles]="{'color': 'white'}" class="ms-1"></fa-icon>
     </button>
   </form>

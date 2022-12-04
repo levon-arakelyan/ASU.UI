@@ -1,6 +1,6 @@
-<div>
-  <label class="mb-1">{{label}}</label>
-  <select class="form-select" [ngModel]="value" (ngModelChange)="valueChange.emit($event)" [name]="name">
+<div [ngClass]="{'d-inline': inline}">
+  <label *ngIf="label" class="mb-1">{{label}}</label>
+  <select class="form-select d-inline" [ngClass]="{'w-auto': inline}" [ngModel]="value" (ngModelChange)="valueChange.emit($event)" [name]="name">
     <option selected disabled [value]="undefined">Ընտրել․․․</option>
     <option *ngFor="let item of items" [value]="item.id">
       {{item.name}}

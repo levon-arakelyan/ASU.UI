@@ -23,11 +23,11 @@
           [(value)]="newTeacher.email"></app-input>
       </div>
       <div class="col-6">
-        <app-input
-          label="Աշխատավարձ"
-          name="salary"
-          type="number"
-          [(value)]="newTeacher.salary"></app-input>
+        <app-select
+          label="Աստիճան"
+          name="degree"
+          [items]="degreesList"
+          [(value)]="newTeacher.degree"></app-select>
       </div>
     </div>
     <div class="row">

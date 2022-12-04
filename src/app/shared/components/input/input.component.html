@@ -2,6 +2,7 @@
   <label class="mb-1">{{label}}<span *ngIf="required" class="text-danger"> *</span></label>
   <div class="mb-3">
     <input
+      [placeholder]="placeholder"
       [attr.disabled]="disabled ? true : null"
       [type]="type"
       class="form-control"

@@ -84,7 +84,6 @@ export class AdvancedTableComponent implements OnInit {
         this.page = pagedList.page;
         this.totalRecords = pagedList.totalRecords;
         this.loading = false;
-        console.log(this.loading)
       },
       error: err => {
         this.loading = false;

@@ -1,0 +1,31 @@
+
+<div class="w-100" class="mb-3" provide-parent-form>
+  <label class="mb-1">{{label}}<span *ngIf="required" class="text-danger"> *</span></label>
+  <br *ngIf="showSelectedItems">
+  <small class="fst-italic" *ngIf="selectedItemsIds.length && showSelectedItems">({{selectedItemsNames.join(', ')}})</small>
+  <div ngbDropdown class="mb-3 mt-1" autoClose="outside">
+    <input
+      [disabled]="disabled"
+      [ngbTypeahead]="search"
+      (focus)="focus$.next($any($event).target.value)"
+	    (click)="click$.next($any($event).target.value)"
+      [ngClass]="{ 'border-danger': (multiselect.touched || form.submitted) && multiselect.invalid }"
+      #multiselect="ngModel"
+      #autocomplete="ngbTypeahead"
+      class="form-control"
+      [name]="name"
+      [(ngModel)]="filterText"
+      [resultTemplate]="resultTemplate">
+    <div *ngIf="(multiselect.touched || form.submitted) && multiselect.invalid">
+      <div>
+        <small class="text-danger" *ngIf="multiselect.errors.required">Պարտադիր է լրացնել</small>
+      </div>
+    </div> 
+  </div>
+</div>
+
+<ng-template #resultTemplate let-result="result" let-term="term">
+  <div class="d-flex" (click)="onItemClicked(result)">
+    <app-checkbox [value]="selectedItemsNames.includes(result)" [label]="result"></app-checkbox>
+  </div>
+</ng-template>

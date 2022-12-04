@@ -1,0 +1,23 @@
+.items-names {
+  max-width: calc(100% - 16px);
+}
+
+.dropdown-toggle-btn::after {
+  display: none;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.dropdown-menu {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  display: none;
+}

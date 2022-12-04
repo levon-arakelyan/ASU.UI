@@ -1,8 +1,10 @@
+import { TeacherDegree } from "../enums/teacher-degree";
+
 export class AddTeacherModel {
   public firstName: string;
   public lastName: string;
   public email: string;
-  public salary: number;
+  public degree: TeacherDegree;
   public rate: number;
   public departmentId: number;
   public isDepartmentHead: boolean;

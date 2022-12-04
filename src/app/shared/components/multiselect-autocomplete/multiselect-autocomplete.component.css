@@ -1,0 +1,13 @@
+::ng-deep .dropdown-menu {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+::ng-deep .dropdown-menu::-webkit-scrollbar {
+  display: none;
+}
+
+::ng-deep .dropdown-item:hover, ::ng-deep .dropdown-item.active {
+  background-color: #ececec;
+  color: black;
+}
