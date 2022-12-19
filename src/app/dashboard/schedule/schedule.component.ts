@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { ToastrService } from "ngx-toastr";
 import { ScheduleDto } from "src/app/core/dto/schedule-dto";
 import { SubjectDto } from "src/app/core/dto/subject-dto";
 import { AudienceType } from "src/app/core/enums/audience-type";
 import { AddScheduleModel } from "src/app/core/models/add-schedule-model";
 import { SelectItemModel } from "src/app/core/models/select-item-model";
+import { ConfirmationModalService } from "src/app/shared/services/confirmation-modal.service";
 import { EnumHelper } from "../services/helpers/enum-helper";
 import { SchedulesService } from "../services/schedules.service";
 import { SubjectsService } from "../services/subjects.service";
@@ -32,11 +34,14 @@ export class ScheduleComponent implements OnInit {
   public generationLoading: boolean = false;
   public savingLoading: boolean = false;
   public getLoading: boolean = false;
+  public scheduleDeletingLoading: boolean = false;
   public faSpinner = faSpinner;
 
   constructor(
     private readonly subjectsService: SubjectsService,
-    private readonly schedulesService: SchedulesService
+    private readonly schedulesService: SchedulesService,
+    private readonly confirmationModalService: ConfirmationModalService,
+    private readonly notifications: ToastrService
   ) {}
 
   public ngOnInit(): void {
@@ -93,6 +98,15 @@ export class ScheduleComponent implements OnInit {
     })
   }
 
+  public openScheduleDeletingConfirmationModal() {
+    this.confirmationModalService.open({
+      action: 'ջնջել դասացուցակը',
+      agreed: () => {
+        this.removeSchedule()
+      }
+    })
+  }
+
   private setClasses(): void {
     this.classes = new Array(Math.ceil(this.weekDays.length / this.maxDaysInRow)).fill([]);
     for(let i = 0; i < this.classes.length; i++) {
@@ -136,6 +150,7 @@ export class ScheduleComponent implements OnInit {
     });
   }
   
+  private removeSchedule() {
+    this.schedulesService.deleteForCourse(this.courseId).subscribe();
+  }
 }
-
-//{"subjectId":9,"repeat":2,"audienceType":"1"},{"subjectId":15,"repeat":1,"audienceType":"1"},{"subjectId":7,"repeat":2,"audienceType":"1"},{"subjectId":6,"repeat":2,"audienceType":"1"},{"subjectId":17,"repeat":1,"audienceType":"1"},{"subjectId":39,"repeat":1,"audienceType":"1"},{"subjectId":25,"repeat":2,"audienceType":"1"},{"subjectId":8,"repeat":2,"audienceType":"1"},{"subjectId":41,"repeat":1,"audienceType":"0"},{"subjectId":40,"repeat":1,"audienceType":"0"}

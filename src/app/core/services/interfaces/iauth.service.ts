@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
-import { AuthenticatedUser } from "../models/authenticated-user-model";
-import { LoginModel } from "../models/login-model";
+import { AuthenticatedUser } from "../../models/authenticated-user-model";
+import { LoginModel } from "../../models/login-model";
 
 export interface IAuthService {
   login(loginModel: LoginModel): Observable<AuthenticatedUser>;

@@ -29,7 +29,6 @@ export class AutocompleteComponent implements OnInit {
       elem.classList.contains('dropdown-item') ||
       elem.classList.contains('ngb-highlight')
     ) {
-      console.log(5)
       this.onItemClicked();
     }
   }

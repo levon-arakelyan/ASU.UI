@@ -15,12 +15,12 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { RouterModule } from "@angular/router";
 import { SelectComponent } from "./components/select/select.component";
 import { CheckboxComponent } from "./components/checkbox/checkbox.component";
-import { MinValueValidatorDirective } from "./directives/min-value";
 import { PageLoadingComponent } from "./components/page-loading/page-loading.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MultiselectComponent } from "./components/multiselect/multiselect.component";
 import { MultiselectAutocompleteComponent } from "./components/multiselect-autocomplete/multiselect-autocomplete.component";
 import { AutocompleteComponent } from "./components/autocomplete/autocomplete.component";
+import { ConfirmationModalComponent } from "./components/confirmation-modal/confirmation-modal.component";
 
 @NgModule({
   imports: [
@@ -36,14 +36,14 @@ import { AutocompleteComponent } from "./components/autocomplete/autocomplete.co
     SelectComponent,
     CheckboxComponent,
     ProvideParentFormDirective,
-    MinValueValidatorDirective,
     AdvancedTableColumnComponent,
     AdvancedTableComponent,
     PagerComponent,
     PageLoadingComponent,
     AutocompleteComponent,
     MultiselectComponent,
-    MultiselectAutocompleteComponent
+    MultiselectAutocompleteComponent,
+    ConfirmationModalComponent
   ],
   providers: [
     AccountsService,
@@ -64,14 +64,14 @@ import { AutocompleteComponent } from "./components/autocomplete/autocomplete.co
     SelectComponent,
     CheckboxComponent,
     ProvideParentFormDirective,
-    MinValueValidatorDirective,
     AdvancedTableColumnComponent,
     AdvancedTableComponent,
     PagerComponent,
     PageLoadingComponent,
     AutocompleteComponent,
     MultiselectComponent,
-    MultiselectAutocompleteComponent
+    MultiselectAutocompleteComponent,
+    ConfirmationModalComponent
   ]
 })
 export class SharedModule {}

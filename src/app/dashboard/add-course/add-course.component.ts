@@ -29,7 +29,6 @@ export class AddCourseComponent {
   ) { }
 
   public ngOnInit(): void {
-    console.log(this.degreesList)
     this.professionsService.getAll().subscribe(res => {
       this.professionsList = res;
     })

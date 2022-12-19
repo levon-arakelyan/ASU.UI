@@ -2,17 +2,18 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { LoginModel } from "src/app/core/models/login-model";
 import { Observable } from "rxjs";
-import { IAccountsService } from "src/app/core/services/iaccounts.service";
+import { IAccountsService } from "src/app/core/services/interfaces/iaccounts.service";
 import { AuthenticatedUser } from "src/app/core/models/authenticated-user-model";
 import { Token } from "src/app/core/models/token-model";
 import { AppSettingsService } from "./app-settings.service";
 import { ApiBaseService } from "src/app/core/services/api-base-service";
+import { HttpService } from "./http.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountsService extends ApiBaseService implements IAccountsService {
-  constructor(private http: HttpClient, private settings: AppSettingsService) {
+  constructor(private http: HttpService, private settings: AppSettingsService) {
     super();
     this.settings.onConfigLoaded.subscribe(() => {
       this.endpoint = `${this.settings.serverUrl}accounts`;

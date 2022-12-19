@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h4 class="modal-title">Համոզվա՞ծ եք</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+  <div>Արդյոք ցանկանում եք {{ options.action }}:</div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close()">{{options.denyButtonText}}</button>
+  <button type="button" class="btn btn-danger" (click)="activeModal.close()">{{options.agreeButtonText}}</button>
+</div>

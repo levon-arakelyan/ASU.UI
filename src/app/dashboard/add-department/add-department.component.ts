@@ -24,7 +24,7 @@ export class AddDepartmentComponent implements OnInit {
 
   public ngOnInit(): void {
     this.facultiesService.getAll().subscribe(res => {
-      this.faculties = res;
+      // this.faculties = res.body;
     })
   }
 

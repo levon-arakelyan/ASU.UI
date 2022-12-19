@@ -13,6 +13,7 @@ import { AuthService } from './shared/services/auth.service';
 import { InterceptorService } from './shared/services/interceptor.service';
 import { NotAuthGuardService } from './shared/services/not-auth-guard.service';
 import { SharedModule } from './shared/shared.module';
+import { ToastrModule } from 'ngx-toastr';
 
 const routes: Routes = [
   { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule), canActivate: [NotAuthGuardService] },
@@ -36,6 +37,7 @@ export function InitializeAppFactory(applicationConfigLoad: AppSettingsService) 
     SharedModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {

@@ -5,8 +5,8 @@ import { catchError, tap, switchMap } from 'rxjs/operators';
 import { AuthenticatedUser } from 'src/app/core/models/authenticated-user-model';
 import { LoginModel } from 'src/app/core/models/login-model';
 import { AccountsService } from './accounts.service';
-import { IAuthService } from 'src/app/core/services/iauth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { IAuthService } from 'src/app/core/services/interfaces/iauth.service';
 
 @Injectable({
   providedIn: 'root'

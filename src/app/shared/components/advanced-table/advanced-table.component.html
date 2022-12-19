@@ -38,11 +38,9 @@
         [(ngModel)]="filterText"
         (keydown.enter)="doSearch()"
         [placeholder]="placeholder">
-      <a routerLink="./add">
-        <button class="btn btn-success">
+        <button class="btn btn-success" routerLink="./add">
           <fa-icon [icon]="faPlus"></fa-icon>
         </button>
-      </a>
     </div>
     <div *ngIf="contentOutsideFromFilterZone" [ngClass]="{'d-none d-md-block': shouldFiltersBeCollapsed}">
       <ng-template [ngTemplateOutlet]="contentOutsideFromFilterZone"></ng-template>

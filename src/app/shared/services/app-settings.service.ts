@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { IPagedListSettings } from "src/app/core/interfaces/ipaged-list-settings";
 import { AppSettings } from "src/app/core/models/app-settings-model";
-import { IAppSettingsService } from "src/app/core/services/iapp-settings.service";
+import { IAppSettingsService } from "src/app/core/services/interfaces/iapp-settings.service";
 import { environment } from "src/environments/environment";
 
 @Injectable({
