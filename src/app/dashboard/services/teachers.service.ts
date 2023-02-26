@@ -34,4 +34,12 @@ export class TeachersService extends ApiBaseService implements ITeachersService 
   public edit(teacherId: number, editModel: EditTeacherModel): Observable<void> {
     return this.http.patch<void>(`${this.endpoint}/edit/${teacherId}`, editModel);
   }
+
+  public getBySubject(scheduleId: number): Observable<TeacherDto[]> {
+    return this.http.get(`${this.endpoint}/get-by-subject/${scheduleId}`);
+  }
+
+  public getAll(): Observable<TeacherDto[]> {
+    return this.http.get(`${this.endpoint}/get-all`);
+  }
 }

@@ -15,4 +15,5 @@ export class ScheduleDto {
   public subject: SubjectDto;
   public audience: AudienceDto;
   public teacher: TeacherDto;
+  public isFractionAbove?: boolean;
 }

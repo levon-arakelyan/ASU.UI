@@ -56,6 +56,19 @@
       <button type="submit" class="btn btn-success">Պահպանել</button>
     </div>
   </form>
-  <app-schedule [courseId]="courseId"></app-schedule>
 
+  <div class="mt-3">
+    <ngb-accordion activeIds="ngb-panel-0">
+      <ngb-panel title="Առարկաներ">
+        <ng-template ngbPanelContent>
+          <app-course-subjects [courseId]="courseId"></app-course-subjects>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel title="Դասացուցակ">
+        <ng-template ngbPanelContent>
+          <app-schedule [courseId]="courseId"></app-schedule>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
 </div>

@@ -33,11 +33,13 @@ import { TeachersListComponent } from "./teachers-list/teachers-list.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddScheduleComponent } from "./add-schedule/add-schedule.component";
 import { EditCourseComponent } from "./edit-course/edit-course.component";
-import { ScheduleComponent } from "./schedule/schedule.component";
+import { ScheduleComponent } from "./edit-course/schedule/schedule.component";
 import { AddAudienceComponent } from "./add-audience/add-audience.component";
 import { AudienciesListComponent } from "./audiencies-list/audiencies-list.component";
 import { AudienciesService } from "./services/audiencies.service";
 import { SchedulesService } from "./services/schedules.service";
+import { CourseSubjectsComponent } from "./edit-course/course-subjects/course-subjects.component";
+import { CourseSubjectsService } from "./services/course-subjects.service";
 
 const routes: Routes = [
   { path: '', component: MainNavbarComponent, children:
@@ -88,7 +90,8 @@ const routes: Routes = [
     AddAudienceComponent,
     EditTeacherComponent,
     EditCourseComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    CourseSubjectsComponent
   ],
   imports: [
     NgbModule,
@@ -113,7 +116,8 @@ const routes: Routes = [
     SubjectsService,
     SubjectGroupsService,
     AudienciesService,
-    SchedulesService
+    SchedulesService,
+    CourseSubjectsService
   ],
 })
 export class DashboardModule {}

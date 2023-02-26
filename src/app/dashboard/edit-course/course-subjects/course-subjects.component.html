@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-between mb-3">
+  <h4>
+    Առարկաներ
+    <fa-icon *ngIf="getLoading" [icon]="faSpinner" [spin]="true"></fa-icon>
+  </h4>
+  <div>
+    <button class="btn btn-success" [disabled]="isCourseSubjectsSaving" (click)="saveCourseSubjects()">
+      <fa-icon *ngIf="isCourseSubjectsSaving" [icon]="faSpinner" size="sm" class="me-1"></fa-icon>
+      Պահպանել
+    </button>
+  </div>
+</div>
+
+<form>
+  <table class="table align-middle  ">
+    <thead>
+      <tr>
+        <th>Առարկա</th>
+        <th>Կրեդիտ (շաբաթվա կտրվածքով)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let courseSubject of updatedCourseSubjects; let i = index">
+        <td>{{courseSubject.subject.name}}</td>
+        <td>
+          <app-input
+            type="number"
+            [required]="false"
+            name="credit{{i}}"
+            [(value)]="courseSubject.credit"
+            [margin]="false">
+          </app-input>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>

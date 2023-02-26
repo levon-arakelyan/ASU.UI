@@ -1,0 +1,30 @@
+.subject-descriptor {
+  display: inline;
+  width: 34px;
+}
+
+.class-group {
+  width: 20px;
+}
+
+tbody > tr:last-child > td {
+  border-bottom: 0;
+}
+
+.editable-classes-table tbody td {
+  padding: 16px !important
+}
+
+.fraction-row {
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+.fraction-row-sm {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+.class-desc {
+  min-height: 50px;
+}

@@ -9,4 +9,6 @@ export interface ITeachersService {
   add(department: AddTeacherModel): Observable<void>;
   get(teacherId: number): Observable<TeacherDto>;
   edit(teacherId: number, editModel: EditTeacherModel): Observable<void>;
+  getBySubject(shceduleId: number): Observable<TeacherDto[]>;
+  getAll(): Observable<TeacherDto[]>;
 }

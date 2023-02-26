@@ -1,0 +1,173 @@
+<div class="d-flex justify-content-between mb-3">
+  <h4>
+    Դասացուցակ
+    <fa-icon *ngIf="getLoading" [icon]="faSpinner" [spin]="true"></fa-icon>
+  </h4>
+  <div *ngIf="classes.length">
+    <button class="btn btn-{{isScheduleEditing ? 'secondary' : 'primary'}} me-2" (click)="isScheduleEditing = !isScheduleEditing">
+      <fa-icon *ngIf="!isScheduleEditing" [icon]="faEdit" size="sm" class="me-1"></fa-icon>
+      <span>{{!isScheduleEditing ? 'Խմբագրել' : 'Չեղարկել'}}</span>
+    </button>
+    <button class="btn btn-success me-2" *ngIf="isScheduleEditing" (click)="saveSchedule()" [disabled]="savingLoading">
+      <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="savingLoading"></fa-icon>
+      Պահպանել
+    </button>
+    <button class="btn btn-danger" (click)="openScheduleDeletingConfirmationModal()">
+      <fa-icon [icon]="faDelete" size="sm" class="me-1"></fa-icon>
+      Ջնջել
+    </button>
+  </div>
+</div>
+
+<ng-container *ngIf="!isScheduleEditing && !getLoading">
+  <div class="row">
+    <div *ngFor="let day of classes; let weekDayIndex = index" class="col-4 mb-4">
+      <div class="card">
+        <div class="card-header text-center fw-bold">{{weekDays[weekDayIndex]}}</div>
+        <div class="card-body p-0">
+          <table class="table align-middle mb-0">
+            <tbody>
+              <tr *ngFor="let group of day; let classNumberIndex = index">
+                <td class="border-end text-center">
+                  {{classNumbers[classNumberIndex]}}
+                </td>
+                <td>
+                  <ng-container *ngIf="group.hasClasses">
+                    <div *ngFor="let class of group.classes; let studentGroupIndex = index; let isFirst = first" [ngClass]="{'mb-3': isFirst && group.classType == scheduleClassType.Group}">
+                      <div class="d-flex align-items-center">
+                        <div *ngIf="group.classType == scheduleClassType.Group" class="me-3">
+                          {{studentGroups[studentGroupIndex]}})
+                        </div>
+                        <div *ngIf="class.exists">
+                          <div>{{class.subject}}</div>
+                          <small class="fst-italic">{{class.teacher}}, {{class.audience}}</small>
+                        </div>
+                        <div *ngIf="!class.exists" class="invisible">
+                          <div>placeholder</div>
+                          <small>placeholder</small>
+                        </div>
+                      </div>
+                      <div *ngIf="isFirst && group.classType == scheduleClassType.Fraction" class="border-bottom fraction-row-sm"></div>
+                    </div>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isScheduleEditing && !getLoading">
+  <div *ngFor="let row of editableClasses; let i = index" class="mb-5">
+    <div class="card pd-0">
+      <div class="card-header text-center fw-bold">{{weekDays[i]}}</div>
+      <div class="card-body p-0">
+        <form>
+          <table class="table align-middle mb-0 editable-classes-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Առարկա</th>
+                <th>Դասախոս</th>
+                <th>Լսարան</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let group of row; let j = index">
+                <td class="border-end"><div class="text-center">{{classNumbers[j]}}</div></td>
+                <td>
+                  <div *ngFor="let class of group.classes; let k = index; let isFirst = first">
+                    <div
+                      class="d-flex align-items-center"
+                      [ngClass]="{'mb-3': isFirst && group.classType != scheduleClassType.Normal}">
+                      <div class="class-group" [hidden]="group.classType != scheduleClassType.Group">
+                        {{studentGroups[k]}}
+                      </div>
+                      <app-autocomplete
+                        class="w-100"
+                        [margin]="false"
+                        name="subject{{i}}{{j}}{{k}}"
+                        [required]="false"
+                        [items]="subjects"
+                        [(selectedItemId)]="class.subjectId"></app-autocomplete>
+                    </div>
+                    <div [ngClass]="{'fraction-row border-bottom mb-3': isFirst && group.classType == scheduleClassType.Fraction}"></div>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let class of group.classes; let k = index; let isFirst = first">
+                    <div
+                      [ngClass]="{'mb-3': isFirst && group.classType != scheduleClassType.Normal}">
+                      <app-autocomplete
+                        [margin]="false"
+                        name="teacher{{i}}{{j}}{{k}}"
+                        [required]="false"
+                        [items]="getTeachersForSubject(class.subjectId)"
+                        [(selectedItemId)]="class.teacherId">
+                      </app-autocomplete>
+                    </div>
+                    <div [ngClass]="{'fraction-row border-bottom mb-3': isFirst && group.classType == scheduleClassType.Fraction}"></div>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let class of group.classes; let k = index; let isFirst = first">
+                    <div
+                      [ngClass]="{'mb-3': isFirst && group.classType != scheduleClassType.Normal}">
+                      <app-autocomplete
+                        [margin]="false"
+                        [showOnClick]="false"
+                        name="audience{{i}}{{j}}{{k}}"
+                        [required]="false"
+                        [items]="audiences"
+                        [(selectedItemId)]="class.audienceId">
+                      </app-autocomplete>
+                    </div>
+                    <div [ngClass]="{'fraction-row border-bottom mb-3': isFirst && group.classType == scheduleClassType.Fraction}"></div>
+                  </div>
+                </td>
+                <td class="border-start">
+                  <div class="d-flex justify-content-center" *ngIf="group.classType == scheduleClassType.Normal">
+                    <button class="btn btn-primary me-3" type="button" (click)="addGroupRow(group)">
+                      <fa-icon [icon]="faPlus"></fa-icon>
+                      <span class="ms-1">Խումբ</span>
+                    </button>
+                    <button class="btn btn-primary me-3" type="button" (click)="addFractionRow(group)">
+                      <fa-icon [icon]="faPlus"></fa-icon>
+                      <span class="ms-1">Կոտորակ</span>
+                    </button>
+                    <button class="btn btn-danger d-flex align-items-center" type="button" (click)="removeClass(group)">
+                      <fa-icon [icon]="faDelete" size="sm"></fa-icon>
+                      <span class="ms-2">Ջնջել</span>
+                    </button>
+                  </div>
+                  <div *ngIf="group.classType != scheduleClassType.Normal">
+                    <button class="btn btn-danger d-flex align-items-center m-auto" type="button" (click)="removeClassRow(0, group)">
+                      <fa-icon [icon]="faDelete" size="sm"></fa-icon>
+                      <span class="ms-2">Ջնջել</span>
+                    </button>
+                    <div class="my-3" [ngClass]="{'fraction-row border-bottom': group.classType == scheduleClassType.Fraction}"></div>
+                    <button class="btn btn-danger d-flex align-items-center m-auto" type="button" (click)="removeClassRow(1, group)">
+                      <fa-icon [icon]="faDelete" size="sm"></fa-icon>
+                      <span class="ms-2">Ջնջել</span>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end">
+    <!-- <button class="btn btn-danger me-2" (click)="openScheduleDeletingConfirmationModal()" [disabled]="scheduleDeletingLoading">
+      <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="scheduleDeletingLoading"></fa-icon>
+      Ջնջել
+    </button> -->
+    
+  </div>
+</ng-container>

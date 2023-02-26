@@ -3,19 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorHandlerService } from './http-error-handler.service';
-
-export enum HttpMethod {
-  Get = 1,
-  Post = 2,
-  Put = 3,
-  Patch = 4,
-  Delete = 5
-}
+import { IHttpService } from 'src/app/core/services/interfaces/ihttp.service';
+import { HttpMethod } from 'src/app/core/enums/http-method';
 
 @Injectable({
   'providedIn': 'root'
 })
-export class HttpService {
+export class HttpService implements IHttpService {
     
   constructor(
     private readonly httpClient: HttpClient,
@@ -67,7 +61,7 @@ export class HttpService {
       .pipe(
         catchError(err => {
           this.httpErrorHandlerService.handleError(err);
-          return throwError(err);
+          return throwError(() => err);
         })
       );
   }

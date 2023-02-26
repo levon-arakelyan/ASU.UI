@@ -13,7 +13,7 @@
 
   <app-advanced-table-column key="departmentHead.head.fullName" title="Ամբիոնի վարիչ" [sort]="true">
     <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
-      {{item.departmentHead?.head?.fullName}}
+      {{item.departmentHead?.head?.name}}
     </ng-template>
   </app-advanced-table-column>
 

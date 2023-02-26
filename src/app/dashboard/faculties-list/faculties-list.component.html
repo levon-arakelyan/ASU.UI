@@ -7,7 +7,7 @@
 
   <app-advanced-table-column key="facultyHead.head.fullName" title="Դեկան" [sort]="true">
     <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
-      {{item.facultyHead?.head?.firstName}} {{item.facultyHead?.head?.lastName}}
+      {{item.facultyHead?.head?.fullName}}
     </ng-template>
   </app-advanced-table-column>
 

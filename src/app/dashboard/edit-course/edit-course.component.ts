@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { ActivatedRoute, Route, Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { CourseDto } from "src/app/core/dto/course-dto";
 import { ProfessionDto } from "src/app/core/dto/profession-dto";

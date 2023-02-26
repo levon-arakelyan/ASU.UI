@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class InterceptorService implements HttpInterceptor {
-  constructor(@Inject(AuthService) private authService: AuthService) { }
+  constructor(@Inject(AuthService) private readonly authService: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getTokenFromStorage();

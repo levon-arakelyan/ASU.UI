@@ -64,12 +64,12 @@ export class AuthService implements IAuthService {
           }),
           catchError(_ => {
             this.removeAuth();
-            return throwError(false);
+            return throwError(() => false);
           }),
         );
     } else {
       this.removeAuth();
-      return throwError(false);
+      return throwError(() => false);
     }
   }
 

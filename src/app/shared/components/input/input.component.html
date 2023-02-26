@@ -1,6 +1,6 @@
-<div class="w-100" class="mb-3" provide-parent-form>
-  <label class="mb-1">{{label}}<span *ngIf="required" class="text-danger"> *</span></label>
-  <div class="mb-3">
+<div class="w-100" [ngClass]="{'mb-3': margin}" provide-parent-form>
+  <label [ngClass]="{'mb-1': margin}" *ngIf="label">{{label}}<span *ngIf="required" class="text-danger"> *</span></label>
+  <div [ngClass]="{'mb-3': margin}">
     <input
       [placeholder]="placeholder"
       [attr.disabled]="disabled ? true : null"

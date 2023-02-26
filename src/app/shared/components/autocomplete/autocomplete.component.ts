@@ -11,6 +11,7 @@ import { NgForm } from "@angular/forms";
 })
 export class AutocompleteComponent implements OnInit {
 	@ViewChild('autocomplete', { static: true }) autocomplete: NgbTypeahead;
+  @Input() showOnClick: boolean = true;
   @Input() label: string;
   @Input() placeholder: string = '';
   @Input() required: boolean = true;
@@ -40,22 +41,19 @@ export class AutocompleteComponent implements OnInit {
   constructor(public form: NgForm) {  }
 
   public ngOnInit(): void {
-    if (this.selectedItemId != null) {
-      this.setFilterText();
-    }
+    this.setFilterText();
   }
   
   public search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
 		const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.autocomplete.isPopupOpen()));
 		const inputFocus$ = this.focus$;
-
 		return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
 			map((term) => {
         if (term === '') {
-          return this.items.map(x => x.name)
+          return this.items.map(x => x.name).splice(0, 10)
         }
-        return this.items.map(x => x.name).filter(x => x.toLowerCase().includes(term.toLowerCase()));
+        return this.items.map(x => x.name).filter(x => x.toLowerCase().includes(term.toLowerCase())).splice(0, 10);
       }),
 		);
 	};
