@@ -3,16 +3,27 @@
     Դասացուցակ
     <fa-icon *ngIf="getLoading" [icon]="faSpinner" [spin]="true"></fa-icon>
   </h4>
-  <div *ngIf="classes.length">
-    <button class="btn btn-{{isScheduleEditing ? 'secondary' : 'primary'}} me-2" (click)="isScheduleEditing = !isScheduleEditing">
-      <fa-icon *ngIf="!isScheduleEditing" [icon]="faEdit" size="sm" class="me-1"></fa-icon>
-      <span>{{!isScheduleEditing ? 'Խմբագրել' : 'Չեղարկել'}}</span>
+  <div>
+    <button class="btn btn-{{isScheduleEditing ? 'secondary' : 'primary'}}" (click)="isScheduleEditing = !isScheduleEditing">
+      <span *ngIf="isScheduleEditing">
+        <span>Չեղարկել</span>
+      </span>
+      <div *ngIf="!isScheduleEditing">
+        <div *ngIf="!scheduleExists">
+          <fa-icon [icon]="faPlus" size="sm" class="me-1"></fa-icon>
+          <span>Ավելացնել</span>
+        </div>
+        <div *ngIf="scheduleExists">
+          <fa-icon [icon]="faEdit" size="sm" class="me-1"></fa-icon>
+          <span>Խմբագրել</span>
+        </div>
+      </div>
     </button>
-    <button class="btn btn-success me-2" *ngIf="isScheduleEditing" (click)="saveSchedule()" [disabled]="savingLoading">
+    <button class="ms-2 btn btn-success" *ngIf="isScheduleEditing" (click)="saveSchedule()" [disabled]="savingLoading">
       <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="savingLoading"></fa-icon>
       Պահպանել
     </button>
-    <button class="btn btn-danger" (click)="openScheduleDeletingConfirmationModal()">
+    <button class="ms-2 btn btn-danger" (click)="openScheduleDeletingConfirmationModal()" *ngIf="scheduleExists">
       <fa-icon [icon]="faDelete" size="sm" class="me-1"></fa-icon>
       Ջնջել
     </button>
@@ -20,7 +31,12 @@
 </div>
 
 <ng-container *ngIf="!isScheduleEditing && !getLoading">
-  <div class="row">
+  <div *ngIf="!scheduleExists">
+    <div class="alert alert-danger">
+      Դասացուցակը դեռ չի ստեղծված
+    </div>
+  </div>
+  <div class="row" *ngIf="scheduleExists">
     <div *ngFor="let day of classes; let weekDayIndex = index" class="col-4 mb-4">
       <div class="card">
         <div class="card-header text-center fw-bold">{{weekDays[weekDayIndex]}}</div>
@@ -61,7 +77,7 @@
 </ng-container>
 
 <ng-container *ngIf="isScheduleEditing && !getLoading">
-  <div *ngFor="let row of editableClasses; let i = index" class="mb-5">
+  <div *ngFor="let row of editableClasses; let i = index; let isLast = last" [ngClass]="{'mb-5': !isLast}">
     <div class="card pd-0">
       <div class="card-header text-center fw-bold">{{weekDays[i]}}</div>
       <div class="card-body p-0">
@@ -162,12 +178,5 @@
         </form>
       </div>
     </div>
-  </div>
-  <div class="d-flex justify-content-end">
-    <!-- <button class="btn btn-danger me-2" (click)="openScheduleDeletingConfirmationModal()" [disabled]="scheduleDeletingLoading">
-      <fa-icon [icon]="faSpinner" [spin]="true" *ngIf="scheduleDeletingLoading"></fa-icon>
-      Ջնջել
-    </button> -->
-    
   </div>
 </ng-container>

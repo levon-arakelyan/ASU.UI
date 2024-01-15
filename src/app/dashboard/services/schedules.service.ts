@@ -35,7 +35,7 @@ export class SchedulesService extends ApiBaseService implements ISchedulesServic
     return this.http.get<ScheduleEditableClassGroupModel[][]>(`${this.endpoint}/get-editable-for-course/${courseId}`);
 
   }
-  
+
   public saveScheduleForCourse(courseId: number, schedule: ScheduleEditableClassGroupModel[][]): Observable<void> {
     return this.http.post<void>(`${this.endpoint}/save-for-course/${courseId}`, schedule); 
   }

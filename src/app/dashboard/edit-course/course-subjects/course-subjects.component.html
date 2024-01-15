@@ -3,15 +3,21 @@
     Առարկաներ
     <fa-icon *ngIf="getLoading" [icon]="faSpinner" [spin]="true"></fa-icon>
   </h4>
-  <div>
+  <div *ngIf="initialCourseSubjects.length">
     <button class="btn btn-success" [disabled]="isCourseSubjectsSaving" (click)="saveCourseSubjects()">
-      <fa-icon *ngIf="isCourseSubjectsSaving" [icon]="faSpinner" size="sm" class="me-1"></fa-icon>
+      <fa-icon *ngIf="isCourseSubjectsSaving" [icon]="faSpinner" [spin]="true" size="sm" class="me-1"></fa-icon>
       Պահպանել
     </button>
   </div>
 </div>
 
-<form>
+<div *ngIf="!initialCourseSubjects.length">
+  <div class="alert alert-danger">
+    Դասացուցակը դեռ չի ստեղծված
+  </div>
+</div>
+
+<form *ngIf="initialCourseSubjects.length">
   <table class="table align-middle  ">
     <thead>
       <tr>

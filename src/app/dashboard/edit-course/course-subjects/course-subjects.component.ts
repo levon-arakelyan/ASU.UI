@@ -32,14 +32,13 @@ export class CourseSubjectsComponent implements OnInit {
   }
 
   public saveCourseSubjects(): void {
-    //@ts-ignore
-    this.updatedCourseSubjects = this.updatedCourseSubjects.map(x => ({...x, credit: parseInt(x.credit)}));
+    this.updatedCourseSubjects = this.updatedCourseSubjects.map(x => ({...x, credit: parseInt(x.credit.toString())}));
 
     const patch = PatchHelper.createPatch(this.initialCourseSubjects, this.updatedCourseSubjects);
     if (!patch) {
       return;
     }
-    
+
     this.isCourseSubjectsSaving = true;
     this.courseSubjectsService.save(this.updatedCourseSubjects.map(x => x.id), patch).subscribe({
       next: () => {
@@ -57,6 +56,7 @@ export class CourseSubjectsComponent implements OnInit {
     this.courseSubjectsService.getForCourse(this.courseId).subscribe({
       next: res => {
         this.initialCourseSubjects = res;
+        console.log(this.initialCourseSubjects)
         this.updatedCourseSubjects = res;
         this.getLoading = false;
       },

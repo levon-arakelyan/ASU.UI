@@ -5,10 +5,4 @@
   <app-advanced-table-column key="name" title="Անուն" [sort]="true">
   </app-advanced-table-column>
 
-  <app-advanced-table-column key="subjectGroup.name" title="Խումբ" [sort]="true">
-    <ng-template #incomingTemplate let-item="item" let-innerHTML="innerHTML">
-      {{item.subjectGroup?.name}}
-    </ng-template>
-  </app-advanced-table-column>
-
 </app-advanced-table>

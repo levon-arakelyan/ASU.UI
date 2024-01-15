@@ -21,7 +21,7 @@ export class AutocompleteComponent implements OnInit {
   @Input() margin: boolean = true;
   @Input() selectedItemId: number = null;
   @Output() selectedItemIdChange: EventEmitter<number> = new EventEmitter<number>();
-  
+
   @HostListener('click', ['$event'])
   onClick(e: PointerEvent) {
     const elem = e.target as HTMLElement;
@@ -43,7 +43,7 @@ export class AutocompleteComponent implements OnInit {
   public ngOnInit(): void {
     this.setFilterText();
   }
-  
+
   public search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
 		const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.autocomplete.isPopupOpen()));
@@ -64,7 +64,7 @@ export class AutocompleteComponent implements OnInit {
     this.selectedItemIdChange.emit(id);
   }
 
-  private setFilterText(): void {    
+  private setFilterText(): void {
     this.filterText = this.items.find(x => x.id == this.selectedItemId)?.name;
   }
 }

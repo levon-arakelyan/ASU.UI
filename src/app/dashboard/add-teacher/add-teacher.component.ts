@@ -8,6 +8,8 @@ import { SelectItemModel } from "src/app/core/models/select-item-model";
 import { DepartmentsService } from "../services/departments.service";
 import { EnumHelper } from "../services/helpers/enum-helper";
 import { TeachersService } from "../services/teachers.service";
+import { SubjectDto } from "src/app/core/dto/subject-dto";
+import { SubjectsService } from "../services/subjects.service";
 
 @Component({
   selector: 'app-add-teacher',
@@ -19,16 +21,21 @@ export class AddTeacherComponent implements OnInit {
   public newTeacher: AddTeacherModel = new AddTeacherModel();
   public departmentsList: DepartmentDto[] = [];
   public degreesList: SelectItemModel[] = EnumHelper.parseToSelectItems(TeacherDegree);
+  public subjectsList: SubjectDto[] = [];
 
   constructor(
     private readonly departmentsService: DepartmentsService,
     public readonly teachersService: TeachersService,
+    public readonly subjectsService: SubjectsService,
     private readonly router: Router
   ) { }
 
   public ngOnInit(): void {
     this.departmentsService.getAll().subscribe(res => {
       this.departmentsList = res;
+    });
+    this.subjectsService.getAll().subscribe(res => {
+      this.subjectsList = res;
     })
   }
 

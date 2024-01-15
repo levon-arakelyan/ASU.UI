@@ -11,7 +11,6 @@ import { AddCourseComponent } from "./add-course/add-course.component";
 import { AddDepartmentComponent } from "./add-department/add-department.component";
 import { AddFacultyComponent } from "./add-faculty/add-faculty.component";
 import { AddProfessionComponent } from "./add-profession/add-profession.component";
-import { AddSubjectGroupComponent } from "./add-subject-group/add-subject-group.component";
 import { AddSubjectComponent } from "./add-subject/add-subject.component";
 import { AddTeacherComponent } from "./add-teacher/add-teacher.component";
 import { CoursesListComponent } from "./courses-list/courses-list.component";
@@ -24,10 +23,8 @@ import { CoursesService } from "./services/courses.service";
 import { DepartmentsService } from "./services/departments.service";
 import { FacultiesService } from "./services/faculties.service";
 import { ProfessionsService } from "./services/professions.service";
-import { SubjectGroupsService } from "./services/subject-groups.service";
 import { SubjectsService } from "./services/subjects.service";
 import { TeachersService } from "./services/teachers.service";
-import { SubjectGroupsListComponent } from "./subject-groups-list/subject-groups-list.component";
 import { SubjectsListComponent } from "./subjects-list/subjects-list.component";
 import { TeachersListComponent } from "./teachers-list/teachers-list.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -58,8 +55,6 @@ const routes: Routes = [
       { path: 'courses/:id', component: EditCourseComponent },
       { path: 'subjects', component: SubjectsListComponent },
       { path: 'subjects/add', component: AddSubjectComponent },
-      { path: 'subject-groups', component: SubjectGroupsListComponent },
-      { path: 'subject-groups/add', component: AddSubjectGroupComponent },
       { path: 'audiencies', component: AudienciesListComponent },
       { path: 'audiencies/add', component: AddAudienceComponent },
       { path: '', redirectTo: 'faculties', pathMatch: 'full'},
@@ -77,14 +72,12 @@ const routes: Routes = [
     ProfessionsListComponent,
     CoursesListComponent,
     SubjectsListComponent,
-    SubjectGroupsListComponent,
     AudienciesListComponent,
     AddTeacherComponent,
     AddFacultyComponent,
     AddDepartmentComponent,
     AddProfessionComponent,
     AddCourseComponent,
-    AddSubjectGroupComponent,
     AddSubjectComponent,
     AddScheduleComponent,
     AddAudienceComponent,
@@ -114,7 +107,6 @@ const routes: Routes = [
     ProfessionsService,
     CoursesService,
     SubjectsService,
-    SubjectGroupsService,
     AudienciesService,
     SchedulesService,
     CourseSubjectsService

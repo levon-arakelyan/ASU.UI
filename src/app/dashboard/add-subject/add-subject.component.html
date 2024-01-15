@@ -2,18 +2,11 @@
   <h3>Ավելացնել առարկա</h3>
   <form #form="ngForm" class="mt-4" (submit)="submit()">
     <div class="row">
-      <div class="col-6">
+      <div class="col-12">
         <app-input
           label="Անուն"
           name="name"
           [(value)]="newSubject.name"></app-input>
-      </div>
-      <div class="col-6">
-        <app-select
-          label="Խումբ"
-          name="subjectGroup"
-          [items]="subjectGroupsList"
-          [(value)]="newSubject.subjectGroupId"></app-select>
       </div>
     </div>
     

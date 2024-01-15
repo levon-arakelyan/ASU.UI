@@ -61,9 +61,11 @@
       </div>
       <div class="col-6">
         <app-multiselect-autocomplete
+          [items]="subjectsList"
           label="Առարկաներ"
           name="teacherSubjects"
-          [required]="true"></app-multiselect-autocomplete>
+          [required]="true"
+          [(selectedItemsIds)]="newTeacher.subjectsIds"></app-multiselect-autocomplete>
       </div>
     </div>
     <div class="d-flex justify-content-end">

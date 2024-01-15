@@ -9,4 +9,5 @@ export class AddTeacherModel {
   public departmentId: number;
   public isDepartmentHead: boolean;
   public isFacultyHead: boolean;
+  public subjectsIds: number[] = []
 }

@@ -15,6 +15,7 @@ import { SubjectsService } from "../../services/subjects.service";
 import { TeachersService } from "../../services/teachers.service";
 import { ScheduleClassType } from "src/app/core/enums/schedule-class-type";
 import { ScheduleClassGroupModel } from "src/app/core/models/schedule-class-group-model";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: 'app-schedule',
@@ -46,6 +47,7 @@ export class ScheduleComponent implements OnInit {
   public subjectsForScheduleGeneration: number[] = [];
 
   public isScheduleEditing: boolean = false;
+  public scheduleExists: boolean = false;
 
   public generationLoading: boolean = false;
   public savingLoading: boolean = false;
@@ -163,6 +165,11 @@ export class ScheduleComponent implements OnInit {
         this.editableClasses = editableSchedule;
       }
     });
+    this.schedulesService.getScheduleForCourse(this.courseId).subscribe({
+      next: schedule => {
+        this.scheduleExists = !!schedule.length
+      }
+    })
   }
   
   private getSubjects(): void {
